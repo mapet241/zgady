@@ -1,8 +1,16 @@
 var express = require('express');
-
+var passport = require('passport');
 var router = express.Router();
 
 var User = require('../model/userModel.js');
+
+var auth = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.send(401);
+    } else next();
+};
+
+router.use(auth);
 
 router.get('/', function(req, res) {
     User.find(function(err, users) {

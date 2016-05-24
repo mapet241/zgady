@@ -4,6 +4,12 @@ var router = express.Router();
 var User = require('../model/userModel.js');
 var Question = require('../model/questionModel.js');
 
+var auth = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.send(401);
+    } else next();
+};
+
 router.get('/', function(req, res) {
     Question.find(function(err, questions) {
         if (err) {
