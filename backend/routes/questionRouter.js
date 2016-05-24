@@ -10,6 +10,8 @@ var auth = function (req, res, next) {
     } else next();
 };
 
+router.use(auth);
+
 router.get('/', function(req, res) {
     Question.find(function(err, questions) {
         if (err) {
