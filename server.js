@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var userRouter = require('./backend/routes/userRouter.js');
 var questionRouter = require('./backend/routes/questionRouter.js');
-var apiRouter = require('./backend/routes/apiRouter.js');
+var authRouter = require('./backend/routes/authRouter.js');
 var passport = require('passport');
 var session = require('express-session');
 var GoogleStrategy  = require('passport-google-oauth').OAuth2Strategy;
@@ -46,7 +46,7 @@ passport.deserializeUser(function (user, done) {
 
 app.use('/api/users', userRouter);
 app.use('/api/questions', questionRouter);
-app.use('/auth', apiRouter);
+app.use('/auth', authRouter);
 
 // Setup path to root html file
 app.get('/', function (req, res) {
