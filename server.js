@@ -7,13 +7,36 @@ var authRouter = require('./backend/routes/authRouter.js');
 var passport = require('passport');
 var session = require('express-session');
 var GoogleStrategy  = require('passport-google-oauth').OAuth2Strategy;
+var User = require('./backend/model/userModel.js');
 
 passport.use(new GoogleStrategy({
-        clientID: '247578003708-haqaadmkqnrbuptn6r7k82frnt38n74f.apps.googleusercontent.com',
-        clientSecret: 'YiOTrEUZe0j68zU5qb0YdBFG',
+        clientID: '630642664169-g6de16cjop9j9nu7t7aheccnali1inln.apps.googleusercontent.com',
+        clientSecret: 'rpQb4zz06OM1bsh4Hv4ToC1q',
         callbackURL: 'http://localhost:3000/auth/callback'},
     function(req, accessToken, refreshToken, profile, done) {
-        done(null, profile);
+        var query = {
+            'google.id': profile.id
+        };
+
+        User.findOne(query, function (error, user) {
+            if (user) {
+                console.log('found');
+                done(null, user);
+            } else {
+                var user = new User;
+
+                user.email = profile.emails[0].value;
+                user.image =
+                    profile._json.profile_image_url;
+                user.displayName = profile.displayName;
+
+                user.google = {};
+                user.google.id = profile.id;
+                user.google.token = accessToken;
+                user.save();
+                done(null, user);
+            }
+        })
     }
 ));
 
