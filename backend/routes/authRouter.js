@@ -23,6 +23,11 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+router.get('/loginGuest', function (req, res) {
+    req.logOut();
+    res.redirect('/');
+});
+
 router.get('/error', function (req, res) {
     res.sendfile(path.resolve('public/views/authenticationError.html'));
 });

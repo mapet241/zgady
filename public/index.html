@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="phonecatApp">
 
 <head>
 
@@ -48,7 +48,7 @@
 </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" ng-controller="PhoneListController">
         <div class="row">
             <div class="col-md-12 text-center">
                 <img src="images/krokodyl_napis.jpg"/>
@@ -61,15 +61,23 @@
                 </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <!-- This link should be served by AngularJs application rather than NodeJs
-                 It should set user angular variable as 'anonimous' and let user access data as 'read-only' -->
-                <a href="/auth/loginGuest" class="btn btn">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Wejdź jako gość
-                </a>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 text-center">-->
+                <!--&lt;!&ndash; This link should be served by AngularJs application rather than NodeJs-->
+                 <!--It should set user angular variable as 'anonimous' and let user access data as 'read-only' &ndash;&gt;-->
+                <!--<a href="/auth/loginGuest" class="btn btn">-->
+                    <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Wejdź jako gość-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <ul>
+            <li ng-repeat="phone in phones">
+                <span>{{phone.name}}</span>
+                <p>{{phone.snippet}}</p>
+            </li>
+        </ul>
+
     </div>
     <!-- /.container -->
 
@@ -79,6 +87,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="app/js/app.js"></script>
 
 </body>
 
