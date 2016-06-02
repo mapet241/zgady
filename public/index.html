@@ -48,8 +48,8 @@
 </nav>
 
     <!-- Page Content -->
-    <div class="container" ng-controller="PhoneListController">
-        <div class="row">
+    <div class="container">
+        <div class="row" ng-show="false">
             <div class="col-md-12 text-center">
                 <img src="images/krokodyl_napis.jpg"/>
             </div>
@@ -70,24 +70,20 @@
                 <!--</a>-->
             <!--</div>-->
         <!--</div>-->
-
-        <ul>
-            <li ng-repeat="phone in phones">
-                <span>{{phone.name}}</span>
-                <p>{{phone.snippet}}</p>
-            </li>
-        </ul>
+        <div ng-controller="MainController">
+            <b>Owner:</b><br>
+            <owner-detail owner="controllerOwner"></owner-detail>
+        </div>
 
     </div>
     <!-- /.container -->
+    <div ng-view></div>
 
-    <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-    <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-    <!--<script src="bower_components/angular/angular.min.js"></script>-->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="app/js/app.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/ownerDetail.component.js"></script>
 
 </body>
 

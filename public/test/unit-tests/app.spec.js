@@ -1,14 +1,19 @@
 'use strict';
 
-describe('PhoneListController', function() {
+describe('phoneList', function() {
 
+    // Load the module that contains the `phoneList` component before each test
     beforeEach(module('phonecatApp'));
 
-    it('should create a `phones` model with 3 phones', inject(function($controller) {
-        var scope = {};
-        var ctrl = $controller('PhoneListController', {$scope: scope});
+    // Test the controller
+    describe('PhoneListController', function() {
 
-        expect(scope.phones.length).toBe(3);
-    }));
+        it('should create a `phones` model with 3 phones', inject(function($componentController) {
+            var ctrl = $componentController('phoneList');
+
+            expect(ctrl.phones.length).toBe(3);
+        }));
+
+    });
 
 });
