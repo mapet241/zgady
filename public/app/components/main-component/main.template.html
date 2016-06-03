@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group" ng-repeat="question in $ctrl.questions">
+            <li class="list-group-item">
+                <span class="badge btn-info">{{question.answers.length}}</span>
+                <b>{{question.questionText}}</b>
+                <button type="button" class="btn-question-nav btn-sm btn-info"
+                        ng-click="question.isCollapsed = !question.isCollapsed">Odpowiedzi</button>
+                <div uib-collapse="$ctrl.isCollapsed(question)">
+                    <hr>
+                    <div>
+                        <blockquote ng-repeat="answer in question.answers">
+                            <p>{{answer.answerText}}</p>
+                            <footer> Ania, 2016-06-09</footer>
+                        </blockquote>
+                        <br/>
+                        <div class="input-group col-md-10">
+                            <input type="text" class="form-control" placeholder="Odpowiedź ...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Wyślij</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                    <!-- /input-group -->
+            </li>
+        </ul>
+    </div>
+</div>

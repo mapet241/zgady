@@ -1,0 +1,11 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+
+.btn-question-nav {
+    float: right;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: -5px;
+}

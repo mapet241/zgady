@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en" ng-app="mainApp">
 
 <head>
 
@@ -9,30 +9,32 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Zgady</title>
 
     <!-- Bootstrap Core CSS -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/app.animations.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
+        body {
+            padding-top: 70px;
+            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
-<body>
+<body ng-controller="UsersController as usersController" ng-cloak>
 
 <!-- Navigation -->
 <nav class="navbar navbar-fixed-top" role="navigation">
@@ -40,21 +42,25 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <!--<a class="navbar-brand" href="#"><img src="images/chameleon.gif"/></a>-->
-            <a class="navbar-brand btn-xs" href="/auth/logout" ng-show="false">Wyloguj</a>
+            <a class="navbar-brand btn-xs" href="/auth/logout" ng-show="usersController.isLoggedIn()">
+                Wyloguj {{usersController.loggedUser}}
+            </a>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
 
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row" ng-show="true">
+<!-- Page Content -->
+<div class="container">
+    <div ng-hide="usersController.isLoggedIn()">
+        <div class="row">
             <div class="col-md-12 text-center">
                 <img src="images/krokodyl_napis.jpg"/>
             </div>
         </div>
         <br/>
+
         <div class="row">
             <div class="col-md-12 text-center">
                 <a href="/auth/loginGoogle" class="btn btn-lg">
@@ -62,29 +68,26 @@
                 </a>
             </div>
         </div>
-        <!--<div class="row">-->
-            <!--<div class="col-md-12 text-center">-->
-                <!--&lt;!&ndash; This link should be served by AngularJs application rather than NodeJs-->
-                 <!--It should set user angular variable as 'anonimous' and let user access data as 'read-only' &ndash;&gt;-->
-                <!--<a href="/auth/loginGuest" class="btn btn">-->
-                    <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Wejdź jako gość-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div ng-controller="MainController">-->
-            <!--<b>Owner:</b><br>-->
-            <!--<owner-detail owner="controllerOwner"></owner-detail>-->
-        <!--</div>-->
-
     </div>
-    <!-- /.container -->
-    <div ng-view></div>
+    <div ng-view class="view-frame" ng-show="usersController.isLoggedIn()"></div>
+</div>
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="app/app.js"></script>
-    <script src="app/ownerDetail.component.js"></script>
+<!-- End of Page Content -->
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/core/users/users.service.js"></script>
+<script src="app/core/users/users.controller.js"></script>
+<script src="app/core/questions/questions.service.js"></script>
+<script src="app/app.config.js"></script>
+<script src="app/components/login-component/login.component.js"></script>
+<script src="app/components/main-component/main.component.js"></script>
 
 </body>
 

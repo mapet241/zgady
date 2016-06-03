@@ -1,0 +1,7 @@
+=== Backup and restore mongo database ==
+
+To backup database:
+mongodump --db zgady --out C:\tmp
+
+To restore database as 'zgady1':
+mongorestore --db=zgady1 -h localhost C:\tmp\zgady
