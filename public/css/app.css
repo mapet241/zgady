@@ -9,3 +9,13 @@
     margin-left: 5px;
     margin-top: -5px;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+
+.page-content {
+    margin-top: 51px;
+}

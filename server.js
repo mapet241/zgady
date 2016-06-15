@@ -76,6 +76,11 @@ app.get('/', function (req, res) {
     res.sendfile('./public/index.html');
 });
 
+// Setup path to root html file
+app.get('/questions', function (req, res) {
+    res.sendfile('./public/views/main.html');
+});
+
 // Run server
 app.listen(3000, function () {
     console.log('Zgady are listening on port 3000');

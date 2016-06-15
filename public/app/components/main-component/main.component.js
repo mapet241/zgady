@@ -1,4 +1,4 @@
-function UserDetailController(Questions) {
+function QuestionsController(Questions) {
     var self = this;
 
     Questions.get({}, function(data) {
@@ -11,10 +11,9 @@ function UserDetailController(Questions) {
         }
         return question.isCollapsed;
     }
-
 }
 
 angular.module('mainApp').component('main', {
     templateUrl: '/app/components/main-component/main.template.html',
-    controller: ['Questions', UserDetailController]
+    controller: ['Questions', QuestionsController]
 });
